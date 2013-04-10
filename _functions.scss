@@ -1,0 +1,11 @@
+@function columns($n) {
+  @return ((($grid-width / $grid-columns) * $n) / $grid-font-size) + em;
+}
+
+@function gutter($n) {
+  @return ($grid-gutter / $grid-width) * 100%;
+}
+
+@function spacing($n) {
+  @return ($grid-gutter / $grid-width) * 100%;
+}

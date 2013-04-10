@@ -1,0 +1,96 @@
+
+/**
+ * Grid units named by device
+ * .grid-12-1of12
+ * .grid-10-8of10
+ * .grid-4-1of4
+ */
+
+@mixin layout-classes($columns) {
+  @for $i from 1 through $columns {   
+    .r-unit-#{$i}of#{$columns} {
+      width: percentage($i / $columns);
+    }
+  }
+}
+
+@mixin visibility-classes($columns) {
+  .only-#{$columns} {
+    display: none;
+  }
+  @include breakpoint($columns) {
+    .only-#{$columns} {
+      display: block;
+    }
+    .not-#{$columns} {
+      display: none;
+    }
+  }
+}
+
+// Append device name to the <html> psuedo element
+// to use with 'breakpoints' js component
+@mixin expose-breakpoint($columns) {
+  html:before {
+    content: $columns;
+    display: none;
+  }
+}
+
+/**
+ * .m-4-1 - Margin, only grid-4, size 1
+ * .pl-10-3 - Padding left, only grid-10, size 3
+ * .mx-all-1 - Margin left and right, all grids
+ */
+
+@mixin spacing-classes($columns) {
+  @for $i from 1 through length($grid-spacing) {
+    $size: nth($grid-spacing, $i);
+    .p-#{$columns}-#{$i} {
+      padding: $size;
+    }
+    .pt-#{$columns}-#{$i} {
+      padding-top: $size;
+    }
+    .pr-#{$columns}-#{$i} {
+      padding-right: $size;
+    }
+    .pb-#{$columns}-#{$i} {
+      padding-bottom: $size;
+    }
+    .pl-#{$columns}-#{$i} {
+      padding-left: $size;
+    }
+    .py-#{$columns}-#{$i} {
+      padding-top: $size;
+      padding-bottom: $size;
+    }
+    .px-#{$columns}-#{$i} {
+      padding-right: $size;
+      padding-left: $size;
+    }
+    .m-#{$columns}-#{$i} {
+      margin: $size;
+    }
+    .mt-#{$columns}-#{$i} {
+      margin-top: $size;
+    }
+    .mr-#{$columns}-#{$i} {
+      margin-right: $size;
+    }
+    .mb-#{$columns}-#{$i} {
+      margin-bottom: $size;
+    }
+    .ml-#{$columns}-#{$i} {
+      margin-left: $size;
+    }
+    .my-#{$columns}-#{$i} {
+      margin-top: $size;
+      margin-bottom: $size;
+    }
+    .mx-#{$columns}-#{$i} {
+      margin-right: $size;
+      margin-left: $size;
+    }
+  }
+}
