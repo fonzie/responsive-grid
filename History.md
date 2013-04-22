@@ -1,5 +1,5 @@
 
-n.n.n / 2013-04-16 
+0.1.0 / 2013-04-22 
 ==================
 
-  * First commit
+  * First API prototype

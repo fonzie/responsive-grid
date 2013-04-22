@@ -1,158 +1,24 @@
 <html>
-	<head>
-		<link 
-			rel="stylesheet" 
-			type="text/css" 
-			href="../build/build.css">
-	</head>
-	<body class="block-4">
-		<div class="r-grid-container">
-			<div class="copy pad-normal">
-				This demo utilises
-				<ul>
-					<li>The grid classes for layout. The grid will also define a 'breakpoint' value to the html:before element</li>
-					<li>The breakpoints JS module to read the 'content' value of the html:before element on window resize</li>
-					<li>The body-attributes JS module to get the current breakpoint value and add it to a body data-attribute</li>
-				</ul>
-			</div>
- 			<div class="r-grid">
-				<div class="r-grid__unit unit-half unit-800-half unit-480-full">
-					<p class="unit-desktop outer">unit-half</p>
-		            <p class="unit-800 outer">unit-800-half</p>
-		            <p class="unit-480 outer">unit-480-full</p>
-		            <div class="r-grid">
-		            	<div class="r-grid__unit unit-full unit-800-full unit-480-1of3">
-				            <p class="unit-desktop">unit-full</p>
-				            <p class="unit-800">unit-800-full</p>
-				            <p class="unit-480">unit-480-1of3</p>
-				        </div>
-						<div class="r-grid__unit unit-half unit-800-half unit-480-1of3">
-				            <p class="unit-desktop">unit-half</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of3</p>
-				        </div>
-						<div class="r-grid__unit unit-half unit-800-half unit-480-1of3">
-				            <p class="unit-desktop">unit-half</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of3</p>
-				        </div>
+		<head>
+				<link rel="stylesheet" type="text/css" href="../build/build.css">
+				<title></title>
+		</head>
+		<body>
+<!-- 				<div class="rg-Page rg-Page--center">
+						<div class="rg-Grid">
+							<div class="rg-Unit rg-1of4 rg-3of6 rg-2of8 rg-10of10 rg-p-1at4 rg-p-3at6 rg-p-1at10">Column</div>
+							<div class="rg-Unit rg-1of4 rg-3of6 rg-2of8 rg-10of10 rg-p-1at4">Column</div>
+							<div class="rg-Unit rg-1of4 rg-3of6 rg-2of8 rg-10of10 rg-p-1at4">Column</div>
+							<div class="rg-Unit rg-1of4 rg-3of6 rg-2of8 rg-10of10 rg-p-1at4">Column</div>
+						</div>
+				</div> -->
+				<div class="page">
+					<div class="sidebar">
+						Sidebar
 					</div>
-		        </div>
-				<div class="r-grid__unit unit-half unit-800-half unit-480-full">
-					<p class="unit-desktop outer">unit-half</p>
-		            <p class="unit-800 outer">unit-800-half</p>
-		            <p class="unit-480 outer">unit-480-full</p>
-		            <div class="r-grid">
-		            	<div class="r-grid__unit unit-full unit-800-full unit-480-full">
-				            <p class="unit-desktop">unit-full</p>
-				            <p class="unit-800">unit-800-full</p>
-				            <p class="unit-480">unit-480-full</p>
-				        </div>
-						<div class="r-grid__unit unit-3of12 unit-800-half unit-480-1of4">
-				            <p class="unit-desktop">unit-3of12</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of4</p>
-				        </div>
-				        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-1of4">
-				            <p class="unit-desktop">unit-3of12</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of4</p>
-				        </div>
-				        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-1of4">
-				            <p class="unit-desktop">unit-3of12</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of4</p>
-				        </div>
-				        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-1of4">
-				            <p class="unit-desktop">unit-3of12</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-1of4</p>
-				        </div>
+					<div class="content">
+						Content
 					</div>
-		        </div>
-			</div>
-			
-			<div class="r-grid">
-				<div class="r-grid__unit unit-4of12 unit-800-4of12 unit-480-full">
-					<p class="unit-desktop outer">unit-4of12</p>
-		            <p class="unit-800 outer">unit-800-4of12</p>
-		            <p class="unit-480 outer">unit-480-full</p>
-		            <div class="r-grid">
-		            	<div class="r-grid__unit unit-full unit-800-full unit-480-full">
-				            <p class="unit-desktop">unit-full</p>
-				            <p class="unit-800">unit-800-full</p>
-				            <p class="unit-480">unit-480-full</p>
-				        </div>
-					</div>
-		        </div>
-
-				<div class="r-grid__unit unit-8of12 unit-800-8of12 unit-480-full">
-					<p class="unit-desktop outer">unit-8of12</p>
-		            <p class="unit-800 outer">unit-800-8of12</p>
-		            <p class="unit-480 outer">unit-480-full</p>
-		            <div class="r-grid">
-		            	<div class="r-grid__unit unit-half unit-800-half unit-480-half">
-				            <p class="unit-desktop">unit-half</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-half</p>
-				        </div>
-						<div class="r-grid__unit  unit-half unit-800-half unit-480-half">
-				            <p class="unit-desktop">unit-half</p>
-				            <p class="unit-800">unit-800-half</p>
-				            <p class="unit-480">unit-480-half</p>
-				        </div>
-					</div>
-		        </div>
-			</div>
-
-			<div class="r-grid">
-				<div class="r-grid__unit unit-3of12 unit-800-half unit-480-half">
-		            <p class="unit-desktop">unit-3of12</p>
-		            <p class="unit-800">unit-800-half</p>
-		            <p class="unit-480">unit-480-half</p>
-		        </div>
-		        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-half">
-		            <p class="unit-desktop">unit-3of12</p>
-		            <p class="unit-800">unit-800-half</p>
-		            <p class="unit-480">unit-480-half</p>
-		        </div>
-		        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-full">
-		            <p class="unit-desktop">unit-3of12</p>
-		            <p class="unit-800">unit-800-half</p>
-		            <p class="unit-480">unit-480-half</p>
-		        </div>
-		        <div class="r-grid__unit unit-3of12 unit-800-half unit-480-full">
-		            <p class="unit-desktop">unit-3of12</p>
-		            <p class="unit-800">unit-800-half</p>
-		            <p class="unit-480">unit-480-half</p>
-		        </div>
-		    </div>
-
-		    <div class="r-grid">
-				<div class="r-grid__unit unit-8of12 unit-800-8of12 unit-480-1of2">
-		            <p class="unit-desktop">unit-8of12</p>
-		            <p class="unit-800">unit-800-8of12</p>
-		            <p class="unit-480">unit-480-1of2</p>
-		        </div>
-		        <div class="r-grid__unit unit-4of12 unit-800-4of12 unit-480-1of2">
-		            <p class="unit-desktop">unit-8of12</p>
-		            <p class="unit-800">unit-800-8of12</p>
-		            <p class="unit-480">unit-480-1of2</p>
-		        </div>
-		    </div>
-
-		   	<div class="r-grid">
-				<div class="r-grid__unit unit-5of12 unit-800-2of4 unit-480-full">
-		            <p class="unit-desktop">unit-5of12</p>
-		            <p class="unit-800">unit-800-2of4</p>
-		            <p class="unit-480">unit-480-full</p>
-		        </div>
-		        <div class="r-grid__unit unit-7of12 unit-800-2of4 unit-480-full">
-		            <p class="unit-desktop">unit-7of12</p>
-		            <p class="unit-800">unit-800-2of4</p>
-		            <p class="unit-480">unit-480-full</p>
-		        </div>
-		    </div>
-		</div>
-	</body>
+				</div>
+		</body>
 </html>

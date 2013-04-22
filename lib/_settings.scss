@@ -1,17 +1,5 @@
-$grid-width: 960px !default;
-$grid-font-size: 16px !default;
-$grid-baseline: 22px !default;
-$grid-columns: 12 !default;
-$grid-gutter: 20px !default;
-$grid-unit: 10px !default;
-$grid-spacing: 10px 20px 40px !default;
-$grid-breakpoints: 4 6 8 10 12 !default;
-$grid-fallback-breakpoint: 12 !default;
-$grid-fallback-class: '.lt-ie9' !default;
-
-$grid-include-spacing: true !default;
-$grid-include-expose: true !default;
-$grid-include-layout: true !default;
-$grid-include-visibility: true !default;
-
-$has-media-queries: true !default;
+$rg-width: 960px !default;
+$rg-font-size: 16px !default;
+$rg-columns: 12 !default;
+$rg-breakpoints: 4 6 8 10 12 !default;
+$rg-fallback: false;

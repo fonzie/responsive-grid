@@ -1,29 +1,28 @@
 @import "../settings";
 @import "../functions/columns";
 
-@mixin breakpoint($columns, $type: min) {
-  $width: $columns;
-
-  // Pass in a number of columns or a unit value
-  @if unit($columns) == "" {
-    $width: columns($columns);
+@mixin rg-from($columns) {
+  // First breakpoint is no media query. Mobile-first, bitch.
+  @if nth($rg-breakpoints, 1) == $columns {
+    @content;
   }
-
-  // If the browser can do media queries. Set this
-  // before you include the framework
-  @if $has-media-queries == true {
-
-    // First breakpoint is no media query
-    @if nth($grid-breakpoints, 1) == $columns {
+  @else {
+    @media (min-width: rg-columns($columns)) {
       @content;
     }
-    @else {
-      @media (#{$type}-width: $width) {
-        @content;
-      }
-    }
   }
-  @elseif $columns == $grid-fallback-breakpoint {
+}
+
+@mixin rg-upto($columns) {
+  @media (max-width: rg-columns($columns)) {
     @content;
+  }
+}
+
+@mixin rg-between($from, $to) {
+  @include rg-from($from) {
+    @include rg-upto($to) {
+      @content;
+    }
   }
 }

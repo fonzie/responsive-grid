@@ -1,10 +1,82 @@
 @import "lib/settings";
-@import "lib/mixins/classes";
-@import "lib/mixins/at";
-@import "lib/mixins/between";
-@import "lib/mixins/from";
-@import "lib/mixins/to";
+@import "lib/classes/spacing";
+@import "lib/classes/layout";
+@import "lib/classes/visibility";
 @import "lib/mixins/breakpoint";
-@import "lib/mixins/hide-at";
-@import "lib/mixins/show-at";
-@import "lib/mixins/no-media-queries";
+
+@mixin responsive-grid($spacing: 10px 20px 40px, $layout: true, $visibility: true) {
+
+  // If there is only one breakpoint, we'll consider this the fallback
+  $not-fallback: if(length($rg-breakpoints) != 1, true, false);
+
+  /**
+   * Container for the grid
+   */
+  .rg-Page {
+    max-width: $rg-width / $rg-font-size + em;
+  }
+
+    .rg-Page--center {
+      margin: 0 auto;
+    }
+
+  /**
+   * Grid Unit Container
+   */
+  .rg-Grid {
+    letter-spacing: -0.31em;
+    margin:0;
+    padding:0;
+  }
+
+    .rg-Grid--center {
+      text-align: center;
+    }
+
+  /**
+   * Represents a single column
+   */
+  .rg-Unit {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    letter-spacing: normal;
+    text-align: left;
+    text-rendering: auto;
+    vertical-align: top;
+    word-spacing: normal;
+    width: 100%;
+  }
+
+    .rg-Unit--center {
+      margin: 0 auto;
+      display: block;
+    }
+
+  /**
+   * Base settings. The column widths
+   * will be based in the font-size using rems
+   */
+  html {
+    font-size: $rg-font-size;
+  }
+
+  // Loop through each breakpoint and build
+  // classes for each using the breakpoint mixins
+  @each $columns in $rg-breakpoints {
+    @include rg-from($columns) {
+      // Visibility helper classes
+      @if $visibility != false {
+        @include rg-VisibilityClasses($columns, $rg-breakpoints);
+      }
+      // Build the layout classes for this breakpoint
+      @if $layout != false {
+        @include rg-LayoutClasses($columns);
+      }
+      // Build spacing classes specific to this breakpoint
+      @if $spacing != false {
+        @include rg-SpacingClasses($sizes: $spacing, $base: $rg-font-size, $suffix: "at#{$columns}", $rem: $not-fallback);        
+      }
+    }
+  }
+}

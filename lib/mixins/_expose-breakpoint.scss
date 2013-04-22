@@ -1,8 +1,0 @@
-// Append device name to the <html> psuedo element
-// to use with 'breakpoints' js component
-@mixin expose-breakpoint($columns) {
-  html:before {
-    content: $columns;
-    display: none;
-  }
-}

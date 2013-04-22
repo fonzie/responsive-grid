@@ -1,2 +1,60 @@
 @import "../index";
-@include rg-Classes;
+@include responsive-grid;
+
+.rg-Unit {
+  outline: 1px dotted blue;
+}
+
+@include rg-from(4) {
+  body:after {
+    display: block;
+    content: '4 columns';
+  }
+}
+
+@include rg-from(6) {
+  body:after {
+    display: block;
+    content: '6 columns';
+  }
+}
+
+@include rg-from(8) {
+  body:after {
+    display: block;
+    content: '8 columns';
+    @include rg-upto(10) {
+      background: red;
+    }
+  }
+}
+
+@include rg-from(10) {
+  body:after {
+    display: block;
+    content: '10 columns';
+  }
+}
+
+@include rg-from(12) {
+  body:after {
+    display: block;
+    content: '12 columns';
+  }
+}
+
+.page {
+  @extend .rg-Page;
+  @extend .rg-Page--center;
+  @extend .rg-Grid;
+} 
+
+.sidebar {
+  @extend .rg-Unit;
+  @extend .rg-2of6;
+}
+
+.content {
+  @extend .rg-Unit;
+  @extend .rg-4of6;
+}

@@ -1,4 +1,3 @@
 @import "../index";
-$has-media-queries: false;
-$grid-fallback-breakpoint: 12;
-@include responsive-grid-classes;
+$rg-breakpoints: 12;
+@include responsive-grid;

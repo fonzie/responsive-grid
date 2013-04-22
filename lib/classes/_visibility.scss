@@ -1,0 +1,29 @@
+/** 
+ * Build visiblity classes for a list
+ * of breakpoints. Pass in the current column
+ * breakpoint and a list of all breakpoints
+ * and classes will be constructed.
+ *
+ * Wrap this mixin in a breakpoint mixin
+ * to get full use of it.
+ *
+ * @include rg-breakpoint(10) {
+ *   @include rg-VisibilityClasses(10, $breakpoints);
+ * }
+ *
+ * @param $columns {Number} The current breakpoint (in columns)
+ * @param $breakpoints {List} List of all breakpoints (in columns)
+ */
+
+@mixin rg-VisibilityClasses($columns, $breakpoints) {
+  @each $breakpoint in $breakpoints {
+    @if $breakpoint != $columns {
+      .rg-visibleAt#{$breakpoint} {
+        display: none;
+      }
+    }
+  }
+  .rg-invisibleAt#{$columns} {
+    display: none;
+  }
+}

@@ -1,8 +1,0 @@
-@import "./breakpoint";
-
-@mixin show-at($columns) {
-  display: none;
-  @include breakpoint($columns) {
-    display: block;
-  }
-}

@@ -1,7 +1,0 @@
-@import "./breakpoint";
-
-@mixin to($columns) {
-  @include breakpoint($columns, max) {
-    @content;
-  }
-}

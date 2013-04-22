@@ -1,7 +1,0 @@
-@import "./breakpoint";
-
-@mixin hide-at($columns) {
-  @include breakpoint($columns) {
-    display: none;
-  }
-}

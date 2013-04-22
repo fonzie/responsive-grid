@@ -1,0 +1,23 @@
+/**
+ * Build width classes that use percentages
+ * for a certain number of columns.
+ *
+ * eg.
+ * .grid-12-1of12
+ * .grid-10-8of10
+ * .grid-4-1of4
+ *
+ * Usage:
+ *
+ * @include rg-breakpoint(10) {
+ *   @include rg-LayoutClasses(10);
+ * }
+ */
+
+@mixin rg-LayoutClasses($columns) {
+  @for $i from 1 through $columns {
+    .rg-#{$i}of#{$columns} {
+      width: percentage($i / $columns);
+    }
+  }
+}

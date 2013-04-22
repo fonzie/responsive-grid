@@ -1,6 +1,9 @@
 # fonzie-responsive-grid
 
-A pretty awesome responsive grid framework.
+A pretty awesome responsive grid framework. How's this different from other frameworks? Well, this one builds
+breakpoints based on a grid. Lets say you have a 12 column grid, 960px wide, we can create breakpoints at columns
+4, 6, 8, 12. The framework will generate classes for building layouts, spacing classes and comes with a bunch
+of mixins as well.
 
 * Build a fluid grid based on variables
 * Mobile-first
@@ -27,7 +30,7 @@ bower install fonzie-responsive-grid
 @import "responsive-grid";
 ```
 
-## Using Plain ol' Sass
+## Using Sass
 
 ```
 @import "./components/fonzie-responsive-grid/index";
@@ -39,122 +42,50 @@ You'll need to setup your grid: (These are the defaults)
 
 ```scss
 // The maximum grid width
-$grid-width: 960px;
+$rg-width: 960px;
 
 // The grid font size. This is how we use ems
-$grid-font-size: 16px;
-
-// The baseline grid
-$grid-baseline: 22px;
+$rg-font-size: 16px;
 
 // The total number of columns
-$grid-columns: 12;
-
-// The total size of the gutters
-$grid-gutter: 20px;
-
-// The spacing class sizes that will be created
-// These will be converted to ems
-$grid-spacing: 10px 20px 40px;
+$rg-columns: 12;
 
 // The columns at which breakpoints will occur
-$grid-breakpoints: 4 6 8 10 12;
-
-// Set which type of spacing classes will be created based on $grid-spacing
-$grid-margin-classes: true;
-$grid-padding-classes: true;
+$rg-breakpoints: 4 6 8 10 12;
 ```
 
 And then include it: (This is so that it doesn't matter which order you declare the variables)
 
 ```
-@include responsive-grid-classes;
+@include responsive-grid;
 ```
 
-There are some additional variables you can set:
+You can also pass through a couple of variables:
 
 ```
-// So you can have two stylesheets, one for IE and one for good browsers
-$has-media-queries: true;
-
-// The fallback class you can use in the breakpoint mixin to 
-// target browsers without media queries
-$media-query-fallback: '.lt-ie9';
+@include responsive-grid($spacing: 5px 10px 20px, $layout: false);
 ```
+
+This will use `5px`, `10px` and `15px` as the spacing sizes and disable the layout classes. Check `index.scss` for the rest of the parameters.
 
 ## Usage
 
-The `responsive-grid-classes` include will create a bunch of classes for constructing
+The `responsive-grid` include will create a bunch of classes for constructing
 grids using just the HTML.
 
-### With no media queries
+### Layout Classes
 
-#### Option 1: Build two files
+### Spacing Classes
 
-Since IE8 doesn't support media queries and we unfortunately need to keep supporting it, you
-can build a seperate stylesheet for browsers that don't support media queries.
+### Visibilty Classes
 
-Lets say the main entry point for your styles is `index.scss` and this file imports everything
-else, you'll need to make a another file that imports `index.scss` but adjusts some variables:
+### Mixins
 
-```
-$has-media-queries: false;
-$grid-fallback-breakpoint: 12;
-@import 'index.scss';
-```
+### Fallbacks
 
-This won't output any of the media queries. Any time you use the `breakpoint` mixin it will only
-output content if you target `12` columns and it won't be wrapped in a media query. This makes
-your layout work as if there was only a 12 column layout.
-
-In your HTML, you'll just need to import each of them using conditional comments or using something
-like Modernizr:
+If there is only a single breakpoint, we'll assume that it's a fallback. So make a seperate
+stylesheet for browsers that don't do media queries and set the breakpoints to just one point.
 
 ```
-Modernizr.load({
-  test: Modernizr.mediaqueries,
-  nope: 'build/build-no-mq.css',
-  yep: 'build/build.css'
-});
-```
-
-#### Option 2: Use a fallback class
-
-Alternatively you can set a fallback classs and just send IE the same file.
-
-```
-$grid-fallback-class: '.no-mediaqueries';
-$grid-fallback-breakpoint: 12;
-```
-
-Any time you target a 12 column breakpoint, it will also output the content for
-that inside of a `no-mediaqueries` block.
-
-```
-body {
-  @include breakpoint(12) {
-    background: red;
-  }
-}
-```
-
-Would output:
-
-```
-@media (max-width: 60em) {
-  body {
-    background: red;    
-  }
-}
-.no-mediaqueries body {
-  background: red;
-}
-```
-
-This allows you to do fallback. You can also force it to fallback regardless of the columns targeted:
-
-```
-@include breakpoint(6, $fallback: true) {
-  background: blue;
-}
+$rg-breakpoints: 12;
 ```
