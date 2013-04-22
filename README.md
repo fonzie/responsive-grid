@@ -24,16 +24,16 @@ of mixins as well.
 bower install fonzie-responsive-grid
 ```
 
-## Using Fonzie
-
-```
-@import "responsive-grid";
-```
-
 ## Using Sass
 
 ```
 @import "./components/fonzie-responsive-grid/index";
+```
+
+Or if you add an import path to `./components/fonzie-responsive-grid` you can just do:
+
+```
+@import "responsive-grid";
 ```
 
 ## Setup
@@ -54,7 +54,10 @@ $rg-columns: 12;
 $rg-breakpoints: 4 6 8 10 12;
 ```
 
-And then include it: (This is so that it doesn't matter which order you declare the variables)
+## Usage
+
+The `responsive-grid` include will create a bunch of classes for constructing
+grids using just the HTML.
 
 ```
 @include responsive-grid;
@@ -67,11 +70,6 @@ You can also pass through a couple of variables:
 ```
 
 This will use `5px`, `10px` and `15px` as the spacing sizes and disable the layout classes. Check `index.scss` for the rest of the parameters.
-
-## Usage
-
-The `responsive-grid` include will create a bunch of classes for constructing
-grids using just the HTML.
 
 ### Layout Classes
 
