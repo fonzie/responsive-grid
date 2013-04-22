@@ -1,41 +1,4 @@
-
-/**
- * Grid units named by device
- * .grid-12-1of12
- * .grid-10-8of10
- * .grid-4-1of4
- */
-
-@mixin layout-classes($columns) {
-  @for $i from 1 through $columns {   
-    .r-unit-#{$i}of#{$columns} {
-      width: percentage($i / $columns);
-    }
-  }
-}
-
-@mixin visibility-classes($columns) {
-  .only-#{$columns} {
-    display: none;
-  }
-  @include breakpoint($columns) {
-    .only-#{$columns} {
-      display: block;
-    }
-    .not-#{$columns} {
-      display: none;
-    }
-  }
-}
-
-// Append device name to the <html> psuedo element
-// to use with 'breakpoints' js component
-@mixin expose-breakpoint($columns) {
-  html:before {
-    content: $columns;
-    display: none;
-  }
-}
+@import "../settings";
 
 /**
  * .m-4-1 - Margin, only grid-4, size 1
@@ -45,11 +8,11 @@
 
 @mixin spacing-classes($columns) {
   @for $i from 1 through length($grid-spacing) {
-    $size: nth($grid-spacing, $i);
-    .p-#{$columns}-#{$i} {
+    $size: nth($grid-spacing, $i) / $grid-font-size + rem;
+    .rg-p#{$i}-#{$columns} {
       padding: $size;
     }
-    .pt-#{$columns}-#{$i} {
+    .rg-Space-pt#{$i}--#{$columns} {
       padding-top: $size;
     }
     .pr-#{$columns}-#{$i} {

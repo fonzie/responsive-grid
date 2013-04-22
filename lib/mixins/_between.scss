@@ -1,0 +1,9 @@
+@import 'breakpoint';
+
+@mixin rg-between($from, $to) {
+  @include rg-breakpoint($from) {
+    @include rg-breakpoint($to, max) {
+      @content;
+    }
+  }
+}

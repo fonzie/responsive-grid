@@ -1,0 +1,3 @@
+@function rg-columns($n) {
+  @return ((($grid-width / $grid-columns) * $n) / $grid-font-size) + em;
+}

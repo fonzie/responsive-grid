@@ -1,4 +1,7 @@
 build:
-	sass index.scss build/build.css && sass index.scss build/build.min.css --style compressed && gzip -c build/build.min.css > build/build.min.css.gz
+	sass demo/demo.scss build/build.css --style expanded && sass demo/demo.scss build/build.min.css --style compressed && gzip -c build/build.min.css > build/build.min.css.gz
 
-.PHONY: build gzip
+fallback:
+	sass demo/no-mq.scss build/no-mq.css
+
+.PHONY: build fallback

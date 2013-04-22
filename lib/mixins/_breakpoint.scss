@@ -1,0 +1,29 @@
+@import "../settings";
+@import "../functions/columns";
+
+@mixin breakpoint($columns, $type: min) {
+  $width: $columns;
+
+  // Pass in a number of columns or a unit value
+  @if unit($columns) == "" {
+    $width: columns($columns);
+  }
+
+  // If the browser can do media queries. Set this
+  // before you include the framework
+  @if $has-media-queries == true {
+
+    // First breakpoint is no media query
+    @if nth($grid-breakpoints, 1) == $columns {
+      @content;
+    }
+    @else {
+      @media (#{$type}-width: $width) {
+        @content;
+      }
+    }
+  }
+  @elseif $columns == $grid-fallback-breakpoint {
+    @content;
+  }
+}

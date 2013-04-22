@@ -1,0 +1,7 @@
+@import "../settings";
+
+@mixin no-media-queries {
+  @if $has-media-queries == false {
+    @content;
+  }
+}

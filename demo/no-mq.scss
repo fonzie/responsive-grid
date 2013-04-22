@@ -1,0 +1,4 @@
+@import "../index";
+$has-media-queries: false;
+$grid-fallback-breakpoint: 12;
+@include responsive-grid-classes;
