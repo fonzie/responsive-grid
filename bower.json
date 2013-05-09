@@ -1,0 +1,19 @@
+{
+  "name": "fonzie-responsive-grid",
+  "version": "0.1.0",
+  "main": "index.scss",
+  "description": "Responsive grid built on Sass with layout, spacing and visibility classes",
+  "author": "Anthony Short",
+  "license": "MIT",
+  "dependencies": {
+    "fonzie-spacing": "~0.1.0",
+    "fonzie-fractional-widths": "~0.1.0"
+  },
+  "ignore": [
+    "demo",
+    ".gitignore",
+    "README.md",
+    "node_modules",
+    "components"
+  ]
+}

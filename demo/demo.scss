@@ -1,5 +1,13 @@
 @import "../index";
-@include responsive-grid;
+
+$rg-width: 960px;
+$rg-font-size: 16px;
+$rg-columns: 12;
+$rg-breakpoints: 4 6 8 10 12;
+$rg-spacing: 0.3125rem 0.625rem 1.25rem 2.5rem;
+
+@include rg-Grid;
+@include rg-Classes;
 
 .rg-Unit {
   outline: 1px dotted blue;

@@ -1,24 +1,24 @@
 @import "lib/settings";
-@import "lib/classes/spacing";
-@import "lib/classes/layout";
 @import "lib/classes/visibility";
 @import "lib/mixins/breakpoint";
 
-@mixin responsive-grid($spacing: 10px 20px 40px, $layout: true, $visibility: true) {
-
-  // If there is only one breakpoint, we'll consider this the fallback
-  $not-fallback: if(length($rg-breakpoints) != 1, true, false);
+@mixin rg-ResponsiveGrid($fixed: false) {
 
   /**
    * Container for the grid
    */
   .rg-Page {
-    max-width: $rg-width / $rg-font-size + em;
+    @if $fixed == false {
+      max-width: $rg-width / $rg-font-size + em;      
+    }
+    @else {
+      width: $rg-width;
+    }
   }
 
-    .rg-Page--center {
-      margin: 0 auto;
-    }
+  .rg-Page--center {
+    margin: 0 auto;
+  }
 
   /**
    * Grid Unit Container
@@ -29,9 +29,9 @@
     padding:0;
   }
 
-    .rg-Grid--center {
-      text-align: center;
-    }
+  .rg-Grid--center {
+    text-align: center;
+  }
 
   /**
    * Represents a single column
@@ -48,10 +48,10 @@
     width: 100%;
   }
 
-    .rg-Unit--center {
-      margin: 0 auto;
-      display: block;
-    }
+  .rg-Unit--center {
+    margin: 0 auto;
+    display: block;
+  }
 
   /**
    * Base settings. The column widths
@@ -61,22 +61,50 @@
     font-size: $rg-font-size;
   }
 
-  // Loop through each breakpoint and build
-  // classes for each using the breakpoint mixins
-  @each $columns in $rg-breakpoints {
-    @include rg-from($columns) {
-      // Visibility helper classes
-      @if $visibility != false {
-        @include rg-VisibilityClasses($columns, $rg-breakpoints);
-      }
-      // Build the layout classes for this breakpoint
-      @if $layout != false {
-        @include rg-LayoutClasses($columns);
-      }
-      // Build spacing classes specific to this breakpoint
-      @if $spacing != false {
-        @include rg-SpacingClasses($sizes: $spacing, $base: $rg-font-size, $suffix: "at#{$columns}", $rem: $not-fallback);        
+  @include -rg-Breakpoints($rg-breakpoints);
+}
+
+/**
+ * Loop through each breakpoint and build
+ * classes for each using the breakpoint mixins
+ * First breakpoint is no media query — mobile-first.
+ * 
+ * @param {List} $breakpoints List of column breakpoints
+ * @param {Boolean} $spacing Include spacing classes? 
+ * @param {Boolean} $visibility Include visibilty classes? 
+ * @param {Boolean} $layout Include layout classes? 
+ * @api private
+ */
+@mixin -rg-Breakpoints($breakpoints, $spacing: true, $visibility: true, $layout: true) {
+  @each $columns in $breakpoints {
+    @if index($breakpoints, $columns) == 1 {
+      @include -rg-BreakpointClasses($columns, $spacing, $visibility, $layout);
+    }
+    @else {
+      @include rg-from($columns) {
+        @include -rg-BreakpointClasses($columns, $spacing, $visibility, $layout);
       }
     }
+  }
+}
+
+/**
+ * Build all the class types for a breakpoint
+ * 
+ * @param {Mixed} $columns Number of columns
+ * @param {Boolean} $spacing Include spacing classes? 
+ * @param {Boolean} $visibility Include visibilty classes? 
+ * @param {Boolean} $layout Include layout classes? 
+ * @api private
+ */
+@mixin -rg-BreakpointClasses($columns, $spacing, $visibility, $layout) {
+  @if $visibility != false {
+    @include rg-VisibilityClasses($columns, $rg-breakpoints);
+  }
+  @if $layout != false {
+    @include fz-FractionalWidths($columns, $prefix: 'rg-');
+  }
+  @if $spacing != false {
+    @include fz-SpacingClasses($rg-spacing, $prefix: 'rg-', $suffix: "at#{$columns}"); 
   }
 }

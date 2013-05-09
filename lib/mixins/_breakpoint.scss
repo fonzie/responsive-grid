@@ -2,14 +2,8 @@
 @import "../functions/columns";
 
 @mixin rg-from($columns) {
-  // First breakpoint is no media query. Mobile-first, bitch.
-  @if nth($rg-breakpoints, 1) == $columns {
+  @media (min-width: rg-columns($columns)) {
     @content;
-  }
-  @else {
-    @media (min-width: rg-columns($columns)) {
-      @content;
-    }
   }
 }
 

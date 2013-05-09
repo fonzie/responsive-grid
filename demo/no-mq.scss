@@ -1,3 +1,10 @@
 @import "../index";
-$rg-breakpoints: 12;
-@include responsive-grid;
+
+@include rg-Base(
+  $fixed: true
+);
+
+@include rg-Grid(
+  $breakpoints: 12, 
+  $spacing: 5px 10px 20px 40px
+);
